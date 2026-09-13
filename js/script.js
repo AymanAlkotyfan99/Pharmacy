@@ -1,7 +1,7 @@
 /* Edit your invitation here. Dates without an offset use Damascus time (UTC+03:00). */
 const graduationData = {
-  name: "أيمن نعيم",
-  title: "خريج صيدلة",
+  name: "رهف المصري",
+  title: "خريجة صيدلة",
   subtitle: "Pharmacy Graduate",
   university: "الجامعة الخاصة السورية",
   classYear: "2026",
@@ -60,7 +60,7 @@ const graduationData = {
     });
     $$('[data-year]').forEach(element => { element.textContent = graduationData.classYear; });
     const graduateImage = $("[data-graduate-image]");
-    if (graduateImage) graduateImage.alt = `صورة الخريج ${graduationData.name}`;
+    if (graduateImage) graduateImage.alt = `صورة الخريجة ${graduationData.name}`;
     const monogram = $(".portrait-monogram");
     if (monogram) monogram.textContent = graduationData.name.trim().charAt(0);
     let safeMapUrl = "https://maps.google.com";

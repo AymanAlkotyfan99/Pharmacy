@@ -1425,9 +1425,11 @@ body.site-ready #cursor-glow {
 }
 .graduate-portrait {
   position:relative;
+  container-type:inline-size;
   width:100%;
   max-width:410px;
   margin-left:20px;
+  margin-bottom:40px;
   padding:14px
 }
 .graduate-image {
@@ -1454,77 +1456,85 @@ body.site-ready #cursor-glow {
 .portrait-fallback {
   position:absolute;
   inset:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto;
+  justify-items:center;
+  gap:4cqw;
+  padding:16% 8% 24%;
+  text-align:center;
   background:radial-gradient(circle at 24% 23%,#87f5d122,transparent 35%),radial-gradient(circle at 95% 85%,#b8a1ff22,transparent 42%);
   isolation:isolate
 }
 .portrait-word {
-  font-size:8px;
-  letter-spacing:5px;
+  font-family:var(--english);
+  font-size:clamp(7px,2.1cqw,9px);
+  line-height:1.5;
+  letter-spacing:.45em;
   color:#b1d4ce;
-  position:absolute;
-  top:16%;
-  left:50%;
-  transform:translateX(-50%)
+  padding-left:.45em
+}
+.portrait-emblem {
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:100%;
+  min-height:0;
+  isolation:isolate
 }
 .portrait-monogram {
   font-family:var(--display);
-  font-size:190px;
-  line-height:1;
+  font-size:clamp(64px,30cqw,115px);
+  line-height:1.6;
   color:#bdedda;
   font-weight:400;
   text-shadow:0 0 60px #87f5d138;
-  position:relative;
-  margin-top:24px
-}
-.portrait-monogram::before {
-  content:'℞';
-  position:absolute;
-  top:40px;
-  left:-24px;
-  font-family:Georgia,serif;
-  font-size:85px;
-  color:#b8a1ff40;
-  z-index:-1
+  position:relative
 }
 .portrait-rings {
   position:absolute;
-  top:24%;
-  left:14%;
-  width:73%;
+  top:50%;
+  left:50%;
+  width:68%;
   aspect-ratio:1;
   border:1px solid #a9e9d820;
   border-radius:50%;
-  transform:rotate(-30deg) scaleY(.78);
-  z-index:-1
+  transform:translate(-50%,-50%) rotate(-30deg) scaleY(.78);
+  z-index:-1;
+  pointer-events:none
 }
 .portrait-rings::before,.portrait-rings::after {
   content:'';
   position:absolute;
-  inset:24px -20px;
+  inset:12% -6%;
   border:1px solid #b8a1ff25;
   border-radius:50%;
   transform:rotate(65deg)
 }
 .portrait-rings::after {
-  inset:-22px 25px;
+  inset:-8% 12%;
   transform:rotate(85deg);
   border-color:#a9e9d812
 }
-.portrait-fallback-name {
-  font-family:var(--display);
-  font-size:25px;
-  color:#c7d9da;
-  margin-top:23px
+.portrait-identity {
+  position:relative;
+  width:100%
 }
-.portrait-fallback>small {
-  font-size:5px;
-  letter-spacing:2px;
+.portrait-fallback-name {
+  display:block;
+  font-family:var(--display);
+  font-size:clamp(20px,7.8cqw,30px);
+  line-height:1.7;
+  color:#c7d9da;
+  overflow-wrap:anywhere
+}
+.portrait-identity>small {
+  display:block;
+  font-family:var(--english);
+  font-size:clamp(5px,1.6cqw,6px);
+  line-height:1.8;
+  letter-spacing:.25em;
   color:#8ba7ad;
-  margin-top:12px
+  margin-top:6px
 }
 .portrait-orbit {
   position:absolute;
@@ -1543,10 +1553,10 @@ body.site-ready #cursor-glow {
 }
 .portrait-seal {
   position:absolute;
-  left:-28px;
-  bottom:23px;
-  width:123px;
-  height:123px;
+  left:-12px;
+  bottom:-34px;
+  width:31cqw;
+  height:31cqw;
   border-radius:50%;
   border:1px solid #b5e2d839;
   outline:1px solid #b5e2d812;
@@ -1560,19 +1570,19 @@ body.site-ready #cursor-glow {
   transform:rotate(-10deg)
 }
 .portrait-seal>span:first-child {
-  font-size:11px;
+  font-size:clamp(7px,2.8cqw,11px);
   color:#c7e6dc
 }
 .portrait-seal b {
   font-family:Georgia,serif;
-  font-size:35px;
+  font-size:clamp(22px,9cqw,35px);
   font-weight:400;
   line-height:1.6;
   color:var(--mint)
 }
 .portrait-seal>span:last-child {
-  font-size:5px;
-  letter-spacing:1px;
+  font-size:clamp(3.5px,1.3cqw,5px);
+  letter-spacing:.16em;
   color:#bdcdc8
 }
 .portrait-corner {
@@ -2221,29 +2231,6 @@ body.site-ready #cursor-glow {
   .graduate-signature>span {
     font-size:25px
   }
-  .portrait-seal {
-    height:95px;
-    width:95px;
-    left:-13px
-  }
-  .portrait-seal b {
-    font-size:27px
-  }
-  .portrait-seal>span:first-child {
-    font-size:9px
-  }
-  .portrait-seal>span:last-child {
-    font-size:4px
-  }
-  .portrait-monogram {
-    font-size:145px
-  }
-  .portrait-fallback-name {
-    font-size:22px
-  }
-  .portrait-fallback>small {
-    font-size:4px
-  }
   .pharmacy {
     min-height:600px
   }
@@ -2648,7 +2635,7 @@ body.site-ready #cursor-glow {
   .graduate-portrait {
     max-width:350px;
     width:86%;
-    margin:0 auto;
+    margin:0 auto 40px;
     padding:12px
   }
   .graduate-copy {
@@ -2669,29 +2656,6 @@ body.site-ready #cursor-glow {
   }
   .graduate-signature>div {
     font-size:13px
-  }
-  .portrait-monogram {
-    font-size:160px
-  }
-  .portrait-fallback-name {
-    font-size:27px
-  }
-  .portrait-seal {
-    height:108px;
-    width:108px;
-    left:-16px
-  }
-  .portrait-seal b {
-    font-size:31px
-  }
-  .portrait-seal>span:first-child {
-    font-size:10px
-  }
-  .portrait-word {
-    font-size:7px
-  }
-  .portrait-fallback>small {
-    font-size:4.5px
   }
   .pharmacy {
     min-height:615px;
